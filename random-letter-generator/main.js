@@ -2,7 +2,7 @@ $(function() {
   var _ = {
     'alphabet'    : [],
     'timeBetween' : 40,
-    'rolls'       : 50;
+    'rolls'       : 50,
     'random'      : {'number':0,'letter':'A'}
   };
   for (i = 65; i < 91; i++) {
