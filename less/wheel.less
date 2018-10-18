@@ -1,0 +1,20 @@
+#wheel {
+  span {
+    padding: 0 0.25em;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    width:1.2em;
+    border-bottom: 10px solid @lightGray;
+    transition: all 0.5s ease;
+    &.not-shown {
+      background: @lightGray;
+      color: @lightGray;
+      border-bottom: 10px solid @red;
+    }
+    &.spacer {
+      background:white !important;
+      border-bottom:white !important;
+    }
+  }
+}
