@@ -1,8 +1,9 @@
-var guessed = [];
 $(function() {
-  var _ = {
-    'clues' : ['Los+Lobos','Oingo Boingo'],
-    'alphabet' : []
+  _ = {
+    'answers'  : ['Los+Lobos','Oingo Boingo','This Is Radio Clash','I+Wanna Dance+With Somebody'],
+    'alphabet' : [],
+    'tools'    : [],
+    'guessed'  : []
   };
   for (i = 65; i < 91; i++) {
     _.alphabet.push(String.fromCharCode(i));
@@ -11,40 +12,39 @@ $(function() {
     return '<a href="javascript:vanna(\'' + letter + '\');">' + letter + '</span>';
   }).join(' ');
   _['alphabet_html'] += "<hr /><p><a href='javascript:pat();'>Reveal!</a> | <a href='javascript:unPat();'>Conceal!</a>";
-
-  _['clue'] = _.clues[0];
-  _['clue_html'] = _['clue'].split("").map(function(letter){
-    if (letter === '+') return '<span class="not-shown spacer">&nbsp;</span>';
-    if (letter === ' ') return '<br />';
-    return '<span class="not-shown display letter-' + letter.toUpperCase() + '">' + letter + '</span>';
-  }).join(' ');
-
+  _.answers.map(function(answer,i){
+    var link = "<a href='javascript:changeAnswer(" + (i+1) + ");'>" + (i+1) + "</a>";
+    _.tools.push(link);
+  });
   // console.log(_);
-  $('#clue').html(_.clue_html);
+
   $('#alphabet').html(_.alphabet_html);
+  $('#tools').html(_.tools.join(', '));
+  changeAnswer(1);
 });
+
 
 function vanna(letter){
   console.log('function');
-  $('#clue').children().map(function(i){
+  $('#answer').children().map(function(i){
     setTimeout(function(){
-      thisLetter = $('#clue').children().eq(i).html().toUpperCase();
-      console.log(thisLetter + '===' + letter);
+      thisLetter = $('#answer').children().eq(i).html().toUpperCase();
+      // console.log(thisLetter + '===' + letter);
       if (thisLetter === letter){
-        console.log('we are a go!');
-        $('#clue').children().eq(i).removeClass('not-shown').addClass('shown');
+        // console.log('we are a go!');
+        $('#answer').children().eq(i).removeClass('not-shown').addClass('shown');
 
       }
     },i*200);
   });
-  window.guessed.push(letter);
-  $('#guessed').html(guessed.join(', '));
+  _.guessed.push(letter);
+  $('#guessed').html(_.guessed.join(', '));
 }
 
 function pat(){
-    $('#clue').children().map(function(i){
+    $('#answer').children().map(function(i){
       setTimeout(function(){
-        thisOne = $('#clue').children().eq(i);
+        thisOne = $('#answer').children().eq(i);
         isLetter = !thisOne.hasClass('spacer');
         if(isLetter){
           // console.log(i);
@@ -58,4 +58,17 @@ function pat(){
 
 function unPat(){
   $('.display').removeClass('shown').addClass('not-shown');
+}
+
+function changeAnswer(n){
+  n--;
+  console.log(n);
+  console.log(_);
+  _['answer'] = _.answers[n];
+  _['answer_html'] = _['answer'].split("").map(function(letter){
+    if (letter === '+') return '<span class="not-shown spacer">&nbsp;</span>';
+    if (letter === ' ') return '<br />';
+    return '<span class="not-shown display transition letter-' + letter.toUpperCase() + '">' + letter + '</span>';
+  }).join(' ');
+  $('#answer').html(_.answer_html);
 }
