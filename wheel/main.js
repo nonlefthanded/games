@@ -1,6 +1,6 @@
 $(function() {
   _ = {
-    'answers'  : ['Los+Lobos','Oingo Boingo','This Is Radio Clash','I+Wanna Dance+With Somebody'],
+    'answers'  : ['This+Is Radio+Clash','I+Wanna Dance+With Somebody','Los+Lobos','Oingo Boingo'],
     'alphabet' : [],
     'tools'    : [],
     'guessed'  : []
@@ -25,7 +25,8 @@ $(function() {
 
 
 function vanna(letter){
-  console.log('function');
+  spaceTime = 50;
+  howManyOccurances = $('.letter-'+letter).length;
   $('#answer').children().map(function(i){
     setTimeout(function(){
       thisLetter = $('#answer').children().eq(i).html().toUpperCase();
@@ -33,11 +34,10 @@ function vanna(letter){
       if (thisLetter === letter){
         // console.log('we are a go!');
         $('#answer').children().eq(i).removeClass('not-shown').addClass('shown');
-
       }
-    },i*200);
+    },i*spaceTime);
   });
-  _.guessed.push(letter);
+  _.guessed.push(letter + ' (' + howManyOccurances +')');
   $('#guessed').html(_.guessed.join(', '));
 }
 
@@ -61,14 +61,15 @@ function unPat(){
 }
 
 function changeAnswer(n){
+  $('#guessed').html('');
+  _.guessed = [];
   n--;
-  console.log(n);
-  console.log(_);
   _['answer'] = _.answers[n];
   _['answer_html'] = _['answer'].split("").map(function(letter){
     if (letter === '+') return '<span class="not-shown spacer">&nbsp;</span>';
     if (letter === ' ') return '<br />';
     return '<span class="not-shown display transition letter-' + letter.toUpperCase() + '">' + letter + '</span>';
   }).join(' ');
+
   $('#answer').html(_.answer_html);
 }
