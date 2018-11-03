@@ -11,6 +11,7 @@
   <link rel="stylesheet/less" type="text/css" href="../less/main.less?date=<?= time(); ?>" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.7.1/less.min.js" ></script>
 	<script src="main.js"></script>
+	<script src="../main.js"></script>
 </head>
 <body id="lightning">
 	<div class="jumbotron jumbotron-fluid">
@@ -20,14 +21,21 @@
   </div>
   <div class="container">
 		<div class="row">
-      <div class="col-xs-10">
+      <section class="col-xs-9 main-content">
 				<h1 class="display">Songs</h1>
+				<div id='seconds'>45</div>
 				<ul id="songs" class="list-unstyled"></ul>
-			</div>
-			<div class="col-xs-2">
+				<div id="loading"></div>
+			</section>
+			<aside class="col-xs-3">
 				<h4>Groups</h4>
 				<p id="tools"></p>
-			</div>
+				<hr />
+				<b>Timer:</b>
+				<a href="javascript:countdownTimer(45,'seconds')">Start</a>
+				|
+				<a href="javascript:countdownTimer(45,'seconds',true)">Stop</a>
+			</aside>
 			</div>
     </div>
 	</div>

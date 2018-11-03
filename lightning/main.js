@@ -1,4 +1,5 @@
 $(function() {
+  startTime = $('#seconds').html();
   $.get( "songs.php", function( songs ) {
     _ = {
       'allSongs' : JSON.parse(songs),

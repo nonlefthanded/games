@@ -5,9 +5,68 @@ body {
   line-height:1.2;
   font-family: 'Exo', sans-serif;
   color: @mainText;
+  background:@lightGray;
+  /*
+  margin:(@1em*2);
+  padding:(@1em*2);
+  */
+}
+.main-content {
+  background:white;
+  padding-bottom:9999px;
+  margin-bottom:-9999px;
+}
+#loading {
+  background:@red;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  height:20px;
+  z-index:9999999;
+  transition: width 500ms;
+}
+#loading-bg {
+  background:@lightGray;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  height:20px;
+  z-index:9999998;
+
+  text-align: right;
+  padding-right:3px;
+  color:white;
+  font-weight:bold;
+}
+bodyNO:after {
+  content: "";
+  background: url(../images/whos-calling-logo.png) no-repeat;
+  background-position: center top;
+  background-size: contain;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+.jumbotron {
+  display:none;
 }
 .display {
   font-family: 'Alfa Slab One', cursive;
+}
+.super-size {
+  font-size:30em;
+  color:@red !important;
+}
+.strikethrough {
+  text-decoration: line-through;
 }
 .transition {
   transition: all 0.5s ease;

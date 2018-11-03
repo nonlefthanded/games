@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<title>Games | Questions</title>
+	<title>Games | Pass The Word!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="https://cdn-images-1.medium.com/fit/c/120/120/1*434TrD4EYMgqXR7ICIIPkQ.png" />
   <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js?ver=1.9.1'></script>
 	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Exo:200" rel="stylesheet">
   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?ver=4.9.8' type='text/css' media='all' />
   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.9.8' type='text/css' media='all' />
-  <link rel="stylesheet/less" type="text/css" href="../less/main.less?date=4" />
+  <link rel="stylesheet/less" type="text/css" href="../less/main.less?date=1" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.7.1/less.min.js" ></script>
 	<script src="main.js"></script>
 	<script src="../main.js"></script>
 </head>
-<body id="questions">
+<body id="lightning">
 	<div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">Questions!</h1>
+      <h1 class="display-4">Pass The Word!</h1>
     </div>
   </div>
   <div class="container">
 		<div class="row">
-      <section class="col-xs-9 main-content">
-				<h2 class="display">Question #<span></span></h2>
-				<article id="question"></article>
+      <section class="col-xs-9 main-content text-center">
+				<h1 class="display">Clue Value : <span class="display" id="numberText"></span></h1>
+				<h1 class="display super-size" id='seconds'>30</h1>
+				<div id="loading"></div>
 			</section>
-			<aside class="col-xs-3"><p id="controller">NUMBER INTERFACE</p></aside>
+			<aside class="col-xs-3">
+				<h4>Tools</h4>
+				<p id="tools"><input type="number" id="numberInput" value=10 /></p>
+				<hr />
+				<b>Timer:</b>
+				<a href="javascript:countdownTimer(30,'seconds')">Start</a>
+				|
+				<a href="javascript:countdownTimer(30,'seconds',true)">Stop</a>
+
+			</aside>
 			</div>
     </div>
 	</div>

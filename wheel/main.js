@@ -1,6 +1,6 @@
 $(function() {
   _ = {
-    'answers'  : ['This+Is Radio+Clash','I+Wanna Dance+With Somebody','Los+Lobos','Oingo Boingo'],
+    'answers'  : ['I+Wanna Dance+With Somebody','Text+Message In+A+Bottle','Dancing+Queen Latifah'],
     'alphabet' : [],
     'tools'    : [],
     'guessed'  : []
@@ -11,7 +11,7 @@ $(function() {
   _['alphabet_html'] = _.alphabet.map(function(letter){
     return '<a href="javascript:vanna(\'' + letter + '\');">' + letter + '</span>';
   }).join(' ');
-  _['alphabet_html'] += "<hr /><p><a href='javascript:pat();'>Reveal!</a> | <a href='javascript:unPat();'>Conceal!</a>";
+  _['alphabet_html'] += "<hr /><p><a href='javascript:pat();'>Show</a> | <a href='javascript:unPat();'>Hide</a>";
   _.answers.map(function(answer,i){
     var link = "<a href='javascript:changeAnswer(" + (i+1) + ");'>" + (i+1) + "</a>";
     _.tools.push(link);
@@ -21,6 +21,14 @@ $(function() {
   $('#alphabet').html(_.alphabet_html);
   $('#tools').html(_.tools.join(', '));
   changeAnswer(1);
+
+  $('#playerOneInput').on('input', function() {
+    syncNumbers('playerOneInput','playerOneScore');
+  });
+  $('#playerTwoInput').on('input', function() {
+    syncNumbers('playerTwoInput','playerTwoScore');
+  });
+
 });
 
 
@@ -37,7 +45,7 @@ function vanna(letter){
       }
     },i*spaceTime);
   });
-  _.guessed.push(letter + ' (' + howManyOccurances +')');
+  _.guessed.push('<b>' + letter + '</b> (' + howManyOccurances +')');
   $('#guessed').html(_.guessed.join(', '));
 }
 

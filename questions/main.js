@@ -20,10 +20,11 @@ function showQuestion(n){
   var html = "";
   $('h2 span').html(n);
   n--;
-  html += "<h2 class='page-header'>" + _.questions[n].question + "</h2>";
+  var questionHtml = _.questions[n].question.replace(/\*(.*?)\*/g, "<b>$1</b>").replace(/_(.*?)_/g, "<i>$1</i>");
+  html += "<h2 class='page-header'>" + questionHtml + "</h2>";
   html += "<ul class='list-unstyled' id='answers'>";
   _.questions[n].answers.map(function(a,i){
-    return html += "<li class='' id='answer-" + i + "'><h3 class='transition'>" + (i+1) + "). " + a + "</h3></li>";
+    return html += "<li class='strikeable' id='answer-" + i + "'><h3 class='transition'>" + (i+1) + "). " + a + "</h3></li>";
   });
   html += "</ul>";
   html += "<hr />";
